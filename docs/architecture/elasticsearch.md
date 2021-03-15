@@ -16,11 +16,11 @@ Therefore, we are unable to account for them all and thus our logic will never b
 
 Heap can and or is set one of four ways, as detailed below.
 
-### 1) Allow HELK to calculate how much to assign.
+### 1) Allow HELK to calculate how much memory to assign.
 
 This is based on the available memory and variables shown in the code block below.  
-It’s very important to note `available memory`, not the amount of memory the host has.  
-An example to show why this is critical to understand.. If you have a 100GB RAM server, but the server is actively using 90GBs of RAM - then you will NOT get the max 31GB heap/memory for elasticsearch. In this example you would actually end up getting roughly 3 GBs for the heap. Because, with only 10 GBs of available/free memory, it could cause drastic issues to lock up all of the remaining memory!
+It’s very important to note `available memory`, not the total memory the host has.  
+An example to show why this is critical to understand.. If you have a 100GB RAM server, but the server is actively using 90GBs of RAM - then you will NOT get the max 31GB heap/memory for elasticsearch. In this example you would actually end up getting roughly 3 GBs for the heap. Because, with only 10 GBs of available/free memory, it could cause drastic issues by locking up all of the remaining available memory!
 
 ```
 if available memory >= 1000 MBs and <= 5999 MBs:
@@ -70,7 +70,7 @@ Example, if I used the option for ELK + Kafka with no license and no alerting an
 Then I would edit `HELK/docker/helk-kibana-analysis-basic.yml` and add the following line under the environment seciton:  
 `- "ES_JAVA_OPTS=-Xms16g -Xmx16g"`
 
-Then make sure rebuild the elasticsearch docker container.  
+Make sure to rebuild the elasticsearch docker container afterwards.  
 **Always set the min and max JVM heap size to the same value  
 Also, you will be restarting elasticsearch. Therefore your cluster will temporarily be down as the elasticsearch service/database is coming back online**  
 **Note if you are using (elastic) license you will need to set your ELASTIC_PASSWORD and KIBANA_UI_PASSWORD variables (and logstash password if applicable)**
