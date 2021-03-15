@@ -8,7 +8,7 @@ Elasticsearch uses heap, which can more specifically be referred to as memory/RA
 A list of some of the functions this heap/memory does is as follows (keep in mind this is not an exhaustive list):
 * Keep track of indexes
 * When aggregations are run such as calculating sums, mathematical variations, sub aggregations of aggregations, etc..
-* When certain searches are 
+* When certain searches are being performed
 * Keep track of offsets of the tokens/terms of indexed values (aka events/logs/data)
 
 As you can see, heap and the amount of it is important in a healthy setup. The HELK installation process uses various functions to try to set the "perfect" amount of heap, however there are thousands of variables in all the different ways people use/install HELK.  
